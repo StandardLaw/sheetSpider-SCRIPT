@@ -1,4 +1,6 @@
 var scriptTitle = "sheetSpider Script V1.0.2 (7/22/13)";
+var scriptName = "sheetSpider"
+var scriptTrackingId = "UA-41943014-1"
 // Written by Andrew Stillman for New Visions for Public Schools
 // Published under GNU General Public License, version 3 (GPL-3.0)
 // See restrictions at http://www.opensource.org/licenses/gpl-3.0.html
