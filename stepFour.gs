@@ -1,3 +1,4 @@
+
 function retrieveLiveData() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var properties = ScriptProperties.getProperties();
@@ -52,6 +53,10 @@ function retrieveLiveData() {
   dataSheet.getRange(1, 1, 1, feederSheetHeaders.length).setValues([feederSheetHeaders]).setBackground('#C0C0C0').setNote('Data last retrieved at ' + date);
   dataSheet.setFrozenRows(1);
   if (dataReturned.newData.length>0) {
+    var maxRows = dataSheet.getMaxRows();
+    if (dataReturned.newData.length > maxRows) {
+      dataSheet.insertRows(maxRows, dataReturned.newData.length - maxRows + 10);
+    }
     var backgroundRange = dataSheet.getRange(2, 1, dataReturned.newData.length, dataSheet.getLastColumn());
     var backgrounds = backgroundRange.getBackgrounds();
     var notes = backgroundRange.getNotes();
@@ -61,7 +66,6 @@ function retrieveLiveData() {
         for (var k=1; k<changeArray.length; k++) {
           var thisIndex = normalizedFeederSheetHeaders.indexOf(changeArray[k]);
           backgrounds[i][thisIndex] = "yellow";
-          debugger;
           notes[i][thisIndex] = "The value in this cell is different from the corresponding value in the feeder sheet.  It was likely edited in the entity sheet.";
         }
       }
@@ -73,7 +77,6 @@ function retrieveLiveData() {
       }
     }
     setRowsData(dataSheet, dataReturned.newData);
-    debugger;
     backgroundRange.setBackgrounds(backgrounds);
     backgroundRange.setNotes(notes);
   }
