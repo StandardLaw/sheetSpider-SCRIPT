@@ -1,5 +1,4 @@
 function sheetSpider_preconfig() {
-  setsheetSpiderUid();
   setsheetSpiderSid();
   var ssId = SpreadsheetApp.getActiveSpreadsheet().getId();
   ScriptProperties.setProperty('ssId', ssId);
