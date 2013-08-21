@@ -11,7 +11,6 @@ function sheetSpider_preconfig() {
  
   
   //#######End preconfiguration code#######
-  sheetSpider_getInstitutionalTrackerObject();
   ScriptProperties.setProperty('preconfigStatus', 'true'); 
   onOpen();
 }
