@@ -1,4 +1,3 @@
-
 function retrieveLiveData() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var properties = ScriptProperties.getProperties();
@@ -66,6 +65,7 @@ function retrieveLiveData() {
         for (var k=1; k<changeArray.length; k++) {
           var thisIndex = normalizedFeederSheetHeaders.indexOf(changeArray[k]);
           backgrounds[i][thisIndex] = "yellow";
+          debugger;
           notes[i][thisIndex] = "The value in this cell is different from the corresponding value in the feeder sheet.  It was likely edited in the entity sheet.";
         }
       }
@@ -155,12 +155,20 @@ function markChanges(referenceData, newData, uniquenessCriterion) {
             changeCount++;
             newData[i].changeStatus = 'edited';
             for (var key in referenceRow) {
-              if(thisRow[key]!=referenceRow[key]) {
+              var thisValue = thisRow[key];
+              var thisReference = referenceRow[key];
+              var type = returnType(thisReference);
+              if (type == "date") {
+                thisValue = Number(thisValue);
+                thisReference = Number(thisReference);
+              }
+              if(thisValue!=thisReference) {
                 newData[i].changeStatus += "||";
                 newData[i].changeStatus += key;
               }
             }
           }
+          break;
         }
       }
     }
