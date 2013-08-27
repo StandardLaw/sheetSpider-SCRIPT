@@ -85,11 +85,11 @@ function disaggregateAndPushUi() {
       thisCheckBox.setValue(true);
       e.parameter['header-'+i] = 'true';
     }
-    if (uniquenessCriterion.indexOf(headers[i]==-1)&&(headers[i]=="Timestamp")) {
+    if ((uniquenessCriterion.length==0)&&(headers[i]=="Timestamp")) {
       thisCheckBox.setValue(true);
       e.parameter['header-'+i] = 'true';
     }
-    if (headers[i]==entityCol) {
+    if (headers[i]==properties.feederEntityCol) {
       thisCheckBox.setValue(true).setEnabled(false);
       e.parameter['header-'+i] = 'true';
     }
