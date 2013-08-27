@@ -258,7 +258,7 @@ function provisionSpreadsheets() {
           var copySSId = copySS.getId();
           var copyDoc = DocsList.getFileById(copySSId);
         }
-        copySS.setSpreadsheetTimeZone(thisSSTimezone);
+        call(function(){copySS.setSpreadsheetTimeZone(thisSSTimezone);});
         entitySheet.getRange(i+2, indices.ssIdCol+1).setValue(copySSId);
         entitySheet.getRange(i+2, indices.urlCol+1).setValue(copySS.getUrl());
         var driveRoot = DocsList.getRootFolder();
@@ -291,7 +291,10 @@ function provisionSpreadsheets() {
           approvedViewers.push(thisSSViewers[s])
         }
       }
-      checkFixFileACLs(copyDoc, approvedViewers, approvedEditors);
+      try {
+        checkFixFileACLs(copyDoc, approvedViewers, approvedEditors);
+      } catch (err) {
+      }
       sheetSpider_logEntitySheetProvisioned();
     }
   } else {
