@@ -168,7 +168,7 @@ function checkFixSheetHeaders(copySS, feederSheetName, feederSheetHeaders) {
     }
     var headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
     for (var i=0; i<feederSheetHeaders.length; i++) {
-      if (headers.indexOf(feederSheetHeaders[i])==-1) {
+      if ((headers.indexOf(feederSheetHeaders[i])==-1)&&(feederSheetHeaders[i]!="Change Status")) {
         if (i>0) {
           sheet.insertColumnAfter(i);
         } else {
