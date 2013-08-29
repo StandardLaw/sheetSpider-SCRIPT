@@ -1,4 +1,4 @@
-var scriptTitle = "sheetSpider Script V1.0.2 (7/22/13)";
+var scriptTitle = "sheetSpider Script V1.0.3 (7/22/13)";
 var scriptName = "sheetSpider"
 var scriptTrackingId = "UA-41943014-1"
 // Written by Andrew Stillman for New Visions for Public Schools
@@ -128,8 +128,10 @@ function entitySheetSettingsUi() {
   } else {
     var thisSSId = ss.getId();
     var parentFolder = DocsList.getFileById(thisSSId).getParents()[0];
-    var parentFolderId = parentFolder.getId();
-    primaryFolderKeyBox.setValue(parentFolderId);
+    if (parentFolder) {
+      var parentFolderId = parentFolder.getId();
+      primaryFolderKeyBox.setValue(parentFolderId);
+    }
   }
   panel.add(primaryFolderLabel).add(primaryFolderKeyBox);
   
