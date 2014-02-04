@@ -108,6 +108,7 @@ function pushData(e) {
         var destSheetHeaderRange = destSheet.getRange(1, 1, 1, destSheet.getLastColumn());
         if (thisEntityArray.length>0) {
           setRowsData(destSheet, thisEntityArray, destSheetHeaderRange, destSheet.getLastRow()+1);
+          SpreadsheetApp.flush();
         }
       }
       sheetSpider_logManualPush();
