@@ -135,8 +135,7 @@ function markChanges(referenceData, newData, uniquenessCriterion) {
   var deletedCount = 0;
   var addedCount = 0;
   for (var i = 0; i<newData.length; i++) {
-    var thisRow = clone(newData[i]);
-    delete thisRow.changeStatus;
+    var thisRow = newData[i];
     var thisUnique = getUniqueString(thisRow, uniquenessCriterionArray);
     var found = false;
     for (var j=0; j<referenceData.length; j++) {
