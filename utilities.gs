@@ -260,36 +260,35 @@ function sheetSpider_logFeederDataUpdated()
   NVSL.log("Feeder%20Data%20Updated", scriptName, scriptTrackingId, systemName)
 }
 
-function sheetSpider_logRepeatInstall()
-{
+//This function makes a call to the correct installation function.
+//Embed this in the function that creates first actively loaded UI panel within the script
+function setSid() { 
+  var scriptNameLower = scriptName.toLowerCase();
+  var sid = ScriptProperties.getProperty(scriptNameLower + "_sid");
+  if (sid == null || sid == "")
+  {
+    var dt = new Date();
+    var ms = dt.getTime();
+    var ms_str = ms.toString();
+    ScriptProperties.setProperty(scriptNameLower + "_sid", ms_str);
+    var uid = UserProperties.getProperty(scriptNameLower + "_uid");
+    if (uid) {
+      logRepeatInstall();
+    } else {
+      logFirstInstall();
+      UserProperties.setProperty(scriptNameLower + "_uid", ms_str);
+    }      
+  }
+}
+
+function logRepeatInstall() {
   var systemName = ScriptProperties.getProperty("systemName")
   NVSL.log("Repeat%20Install", scriptName, scriptTrackingId, systemName)
 }
 
-function sheetSpider_logFirstInstall()
-{
+function logFirstInstall() {
   var systemName = ScriptProperties.getProperty("systemName")
   NVSL.log("First%20Install", scriptName, scriptTrackingId, systemName)
-}
-
-
-function setsheetSpiderSid()
-{ 
-  var sheetSpider_sid = ScriptProperties.getProperty("sheetSpider_sid");
-  if (sheetSpider_sid == null || sheetSpider_sid == "")
-  {
-    // user has never installed sheetSpider before (in any spreadsheet)
-    var dt = new Date();
-    var ms = dt.getTime();
-    var ms_str = ms.toString();
-    ScriptProperties.setProperty("sheetSpider_sid", ms_str);
-    var sheetSpider_uid = UserProperties.getProperty("sheetSpider_uid");
-    if (sheetSpider_uid != null || sheetSpider_uid != "") {
-      sheetSpider_logRepeatInstall();
-    }else{
-      sheetSpider_logFirstInstall();
-    }
-  }
 }
 
 
