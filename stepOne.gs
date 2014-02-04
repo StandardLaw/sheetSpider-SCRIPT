@@ -1,4 +1,4 @@
-var scriptTitle = "sheetSpider Script V1.0.3 (7/22/13)";
+var scriptTitle = "sheetSpider Script V1.0.5 (1/30/14)";
 var scriptName = "sheetSpider"
 var scriptTrackingId = "UA-41943014-1"
 // Written by Andrew Stillman for New Visions for Public Schools
@@ -42,7 +42,8 @@ function onOpen() {
 }
 
 
-function entitySheetSettingsUi() {  
+function entitySheetSettingsUi() {
+  setSid();  
   var app = UiApp.createApplication().setTitle('Step 1: Set Up Entity Sheet').setHeight(400);
   var waitingImageUrl = 'https://drive.google.com/uc?export=download&id='+WAITINGICONID;
   var waitingImage = app.createImage(waitingImageUrl).setWidth('150px').setHeight('150px').setId('waitingImage').setVisible(false).setStyleAttribute('position', 'absolute').setStyleAttribute('left', '150px').setStyleAttribute('top', '100px');
