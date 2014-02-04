@@ -1,5 +1,4 @@
 function sheetSpider_preconfig() {
-  setsheetSpiderSid();
   var ssId = SpreadsheetApp.getActiveSpreadsheet().getId();
   ScriptProperties.setProperty('ssId', ssId);
   // if you are interested in sharing your complete workflow system for others to copy (with script settings)
@@ -8,11 +7,19 @@ function sheetSpider_preconfig() {
   
   
   
- 
+  
   
   //#######End preconfiguration code#######
   ScriptProperties.setProperty('preconfigStatus', 'true'); 
-  onOpen();
+  //Fetch system name, if this script is part of a New Visions system
+  var systemName = NVSL.getSystemName();
+  if (systemName) {
+    ScriptProperties.setProperty('systemName', systemName);
+  }
+  var institutionalTrackingString = NVSL.checkInstitutionalTrackingCode();
+  if (institutionalTrackingString) {
+    onOpen();
+  }
 }
 
 
