@@ -187,4 +187,3 @@ function setRowsData(sheet, objects, optHeadersRange, optFirstDataRowIndex) {
   var destinationRange = sheet.getRange(firstDataRowIndex, headersRange.getColumnIndex(), objects.length, headers.length);
   destinationRange.setValues(data);
 }
-
